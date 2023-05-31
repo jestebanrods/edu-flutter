@@ -1,4 +1,4 @@
-main() {
+void main() {
   var myAge = 30;
   print('Im $myAge Years Old');
 

@@ -1,6 +1,9 @@
+import 'package:chat/domain/message.dart';
+import 'package:chat/presentation/providers/chat_provider.dart';
 import 'package:chat/presentation/widgets/her_message_bubble.dart';
 import 'package:chat/presentation/widgets/message_field_box.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/my_message_bubble.dart';
 
@@ -42,6 +45,8 @@ class _ChatView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final chatProvider = context.watch<ChatProvider>();
+
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -51,17 +56,26 @@ class _ChatView extends StatelessWidget {
                 child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: ListView.builder(
+                  controller: chatProvider.chatSchrollController,
                   // If not define itemCount, the list is infinite.
-                  itemCount: 100,
+                  itemCount: chatProvider.messages.length,
                   itemBuilder: (context, index) {
-                    if (index % 2 == 0) {
-                      return const MyMessageBubble();
-                    } else {
-                      return const HerMessageBubble();
-                    }
+                    final message = chatProvider.messages[index];
+                    return message.fromWho == FromWho.me
+                        ? MyMessageBubble(
+                            message: message.text,
+                          )
+                        : HerMessageBubble(
+                            message: message.text,
+                            imageUrl: message.imageUrl!,
+                          );
                   }),
             )),
-            const MessageFieldBox()
+            MessageFieldBox(
+              onValue: (value) {
+                chatProvider.sendMessage(value);
+              },
+            )
           ],
         ),
       ),

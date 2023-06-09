@@ -19,11 +19,14 @@ class HomeScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           final colors = Theme.of(context).colorScheme;
           return ListTile(
-            leading: Icon(
-              menuItems[index].icon,
-              color: colors.primary,
+            leading: SizedBox(
+              height: double.infinity,
+              child: Icon(
+                menuItems[index].icon,
+                color: colors.primary,
+              ),
             ),
-            trailing: const Icon(Icons.arrow_forward_ios_rounded),
+            trailing: const Icon(Icons.arrow_right),
             title: Text(menuItems[index].title),
             subtitle: Text(menuItems[index].subtitle),
             onTap: () {

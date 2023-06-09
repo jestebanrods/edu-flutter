@@ -11,6 +11,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      title: 'Widgets',
       routerConfig: router,
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.red),
       // home: const HomeScreen(),

@@ -4,10 +4,12 @@ import 'package:widgets/presentation/screens/app_tutorial.dart';
 import 'package:widgets/presentation/screens/buttons_screen.dart';
 import 'package:widgets/presentation/screens/cards_screen.dart';
 import 'package:widgets/presentation/screens/checkbox_screen.dart';
+import 'package:widgets/presentation/screens/counter_screen.dart';
 import 'package:widgets/presentation/screens/dialogs_screen.dart';
 import 'package:widgets/presentation/screens/home_screen.dart';
 import 'package:widgets/presentation/screens/infinite_scroll_screen.dart';
 import 'package:widgets/presentation/screens/progress_screen.dart';
+import 'package:widgets/presentation/screens/theme_changer_screen.dart';
 
 // GoRouter configuration
 final router = GoRouter(
@@ -56,6 +58,14 @@ final router = GoRouter(
     GoRoute(
       path: '/infinite',
       builder: (context, state) => const InfiniteScrollScreen(),
+    ),
+    GoRoute(
+      path: '/counter',
+      builder: (context, state) => const CounterScreen(),
+    ),
+    GoRoute(
+      path: '/themes',
+      builder: (context, state) => const ThemeChangerScreen(),
     ),
   ],
 );
